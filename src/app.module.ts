@@ -4,12 +4,14 @@ import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { MySQLClientModule } from './app/database/MySQLClient.module';
 import { UserModule } from './app/modules/user/user.module';
+import { PetModule } from './app/modules/pet/pet.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     MySQLClientModule,
     UserModule,
+    PetModule,
   ],
   controllers: [AppController],
   providers: [AppService],

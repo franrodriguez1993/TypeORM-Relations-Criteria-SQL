@@ -2,10 +2,12 @@ import {
   Column,
   Entity,
   JoinColumn,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { AddressEntity } from './address.entity';
+import { PetEntity } from './pet.entity';
 
 @Entity({ name: 'users', synchronize: true })
 export class UserEntity {
@@ -35,4 +37,8 @@ export class UserEntity {
   @OneToOne(() => AddressEntity, { cascade: true })
   @JoinColumn()
   address: AddressEntity;
+
+  //OneToMany va en la entidad que va a tener multiples instancias de B
+  @OneToMany(() => PetEntity, (pet) => pet.user, { cascade: true })
+  pets: PetEntity[];
 }
