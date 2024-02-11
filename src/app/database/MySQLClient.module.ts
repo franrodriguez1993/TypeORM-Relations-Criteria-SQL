@@ -5,6 +5,7 @@ import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 import { UserEntity } from './entities/user.entity';
 import { AddressEntity } from './entities/address.entity';
 import { PetEntity } from './entities/pet.entity';
+import { GroupEntity } from './entities/group.entity';
 
 @Module({
   imports: [
@@ -16,7 +17,7 @@ import { PetEntity } from './entities/pet.entity';
       username: process.env.MYSQL_USER,
       password: process.env.MYSQL_PASS,
       database: process.env.MYSQL_DDBB,
-      entities: [UserEntity, AddressEntity, PetEntity],
+      entities: [UserEntity, AddressEntity, PetEntity, GroupEntity],
       synchronize: true,
       namingStrategy: new SnakeNamingStrategy(),
     }),

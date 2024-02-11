@@ -2,12 +2,15 @@ import {
   Column,
   Entity,
   JoinColumn,
+  JoinTable,
+  ManyToMany,
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { AddressEntity } from './address.entity';
 import { PetEntity } from './pet.entity';
+import { GroupEntity } from './group.entity';
 
 @Entity({ name: 'users', synchronize: true })
 export class UserEntity {
@@ -41,4 +44,9 @@ export class UserEntity {
   //OneToMany va en la entidad que va a tener multiples instancias de B
   @OneToMany(() => PetEntity, (pet) => pet.user, { cascade: true })
   pets: PetEntity[];
+
+  /**  MANY TO MANY - BIDIRECCIONAL  **/
+  @ManyToMany(() => GroupEntity, (group) => group.members)
+  @JoinTable() //Este decorador es obligatorio EN UN SOLO LADO de la relación.
+  groups: [];
 }
